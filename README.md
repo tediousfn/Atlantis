@@ -1,4 +1,5 @@
 ATLANTIS - UNDERWATER PLATFORMER WITH PYGAME
 
-* No functionality at the moment
+- NEED TO DO:
+    - Fix background scrolling logic
 
