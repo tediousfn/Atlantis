@@ -1,4 +1,10 @@
 ATLANTIS - UNDERWATER PLATFORMER WITH PYGAME
 
-* No functionality at the moment
+- NEED TO DO:
+    - Make code cleaner
+        - Automate file uploading
+        - Get rid of variables that aren't needed
+    
+- DONE:
+    - Fix background scrolling logic
 
