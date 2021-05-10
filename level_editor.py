@@ -48,7 +48,7 @@ def grid():
 
 #load tiles
 tile_list = []
-for i in range(9):
+for i in range(17):
     img = pygame.image.load(f'img/tiles/{i}.png')
     tile_list.append(img)
 
@@ -138,6 +138,22 @@ while run:
                 current_tile = 7
             if event.key == pygame.K_9:
                 current_tile = 8
+            if event.key == pygame.K_h:
+                current_tile = 9
+            if event.key == pygame.K_j:
+                current_tile = 10
+            if event.key == pygame.K_k:
+                current_tile = 11
+            if event.key == pygame.K_l:
+                current_tile = 12
+            if event.key == pygame.K_b:
+                current_tile = 13
+            if event.key == pygame.K_n:
+                current_tile = 14
+            if event.key == pygame.K_m:
+                current_tile = 15
+            if event.key == pygame.K_p:
+                current_tile = 16
             if event.key == pygame.K_c:
                 reset = True
         
