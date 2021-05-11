@@ -26,21 +26,21 @@ reset = False
 
 world_data = []
 # load game map
-with open('levels/map.txt') as f:
+with open('../levels/map.txt') as f:
    for line in f:
        world_data.append(list(map(int, line.strip().split(','))))
 
 # load images
-floor = pygame.image.load('img/tiles/0.png').convert_alpha()
+floor = pygame.image.load('../img/tiles/0.png').convert_alpha()
 
 # background images
-bg_1 = pygame.image.load('img/background/0.jpg')
-bg_2 = pygame.image.load('img/background/1.jpg')
+bg_1 = pygame.image.load('../img/background/0.jpg')
+bg_2 = pygame.image.load('../img/background/1.jpg')
 bg_list = [[bg_1, bg_1], [bg_2, bg_2]]
 # assets
 img_assets = []
-sand_img = pygame.image.load('img/background/4.png').convert_alpha()
-fish_img = pygame.image.load('img/background/3.png').convert_alpha()
+sand_img = pygame.image.load('../img/background/4.png').convert_alpha()
+fish_img = pygame.image.load('../img/background/3.png').convert_alpha()
 img_assets.append(sand_img)
 img_assets.append(fish_img)
 
@@ -103,7 +103,7 @@ class World:
     
         # Automated file append to tile_type list 
         for x in range(17):
-            img = pygame.image.load(f'img/tiles/{x}.png').convert_alpha()
+            img = pygame.image.load(f'../img/tiles/{x}.png').convert_alpha()
             self.tile_type.append(img)
 
         row_count = 0
@@ -141,7 +141,7 @@ class Player:
         self.in_air = False
 
     def update(self):
-        img = pygame.image.load('img/player/idle/0.png').convert_alpha()
+        img = pygame.image.load('../img/player/idle/0.png').convert_alpha()
         img = pygame.transform.scale(img, (40,40))
         img_rect = img.get_rect()
         img_rect.x = self.x
@@ -169,7 +169,9 @@ class Player:
 
         #check for collision
         for tile in world.tile_list:
-            if tile[1].colliderect(self.x, self.y + self.dy, 40, 40):
+            if tile[1].colliderect(self.x + self.dx, self.y + self.dy, 40, 40):
+                self.dx = 0
+            if tile[1].colliderect(self.x + self.dx, self.y + self.dy, 40, 40):
                 if self.vel_y < 0:
                     self.dy = tile[1].bottom - img_rect.top
                     self.vel_y = 0
@@ -177,11 +179,6 @@ class Player:
                     self.dy = tile[1].top - img_rect.bottom
                     self.vel_y = 0
                     self.in_air = False
-            if 40 + tile[1].x >= self.x and self.y == tile[1].y:
-                print("y")
-                scroll_left = False
-            if (40 - tile[1].x < 80 and 40 - tile[1].x > -40 and tile[1].y == self.y):
-                print(40 - tile[1].x) 
             
         if reset:
             self.y = 240
